@@ -1,3 +1,13 @@
+/* This file is also an example
+of a file with way to much comments,
+more comments doesn't mean, better code. */
+
+/* “Junior developers rely on comments to tell 
+the story when they should be relying on the code 
+to tell the story. Comments are narrative asides; 
+important in their own way, but in no way meant to 
+replace plot, characterization, and setting.” */
+
 const fs = require('fs'); // fileSystem
 
 // process.arvs[2] is the first argument passed to the app in the terminal
@@ -7,7 +17,8 @@ fs.readFile(process.argv[2], { encoding: 'utf-8' }, (err, data) => { // utf-8, t
   let totalLines = 0;
   let comments = 0;
   let MLCFlag = false; // MLC stands for Multiple Line Comment
-  data.split('\n').forEach((line) => { // get the number of lines of the file
+
+  data.split('\n').filter(each => each !== '').forEach((line) => { // get the number of lines of the file
     totalLines += 1;
     if (line.includes(commentSign)) comments += 1; // count only one comment per line
     if (line.includes('/*')) MLCFlag = true; // turn on the flag to count every line of the comment
@@ -19,14 +30,15 @@ fs.readFile(process.argv[2], { encoding: 'utf-8' }, (err, data) => { // utf-8, t
     if (MLCFlag) comments += 1;
   });
 
-  const statusArray = ['terrible', 'bad', 'regular', 'good', 'excelent', 'excelent', 'maybe too much...']; // feedback to the user
+  const statusArray = ['terrible', 'bad', 'regular', 'good', 'excelent', 'maybe too much...']; 
 
   const ratio = Math.floor(comments / totalLines * 100); // percentage of comments in the file
 
-  const index = Math.floor(ratio / 8); // round it down to get the right status
+  let index = Math.floor(ratio / 7); // round it down to get the right status
 
-  // exceeds the array length
-  const status = index < 6 ? statusArray[index].toUpperCase() : 'There\'s more comments than code...';
+  index = index <= 5 ? index : 5; // exceeds the array length
+
+  const status = statusArray[index].toUpperCase();
 
   const fileName = process.argv[2].split('/')[process.argv[2].split('/').length - 1];
   
