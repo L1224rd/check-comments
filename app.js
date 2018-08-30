@@ -24,6 +24,8 @@ fs.readFile(process.argv[2], { encoding: 'utf-8' }, (err, data) => { // utf-8, t
   const ratio = Math.floor(comments / totalLines * 100); // percentage of comments in the file
 
   const index = Math.floor(ratio / 8); // round it down to get the right status
+
+  // exceeds the array length
   const status = index < 6 ? statusArray[index].toUpperCase() : 'There\'s more comments than code...';
 
   const fileName = process.argv[2].split('/')[process.argv[2].split('/').length - 1];
