@@ -34,7 +34,7 @@ fs.readFile(process.argv[2], { encoding: 'utf-8' }, (err, data) => { // utf-8, t
 
   const ratio = Math.floor(comments / totalLines * 100); // percentage of comments in the file
 
-  let index = Math.floor(ratio / 7); // round it down to get the right status
+  let index = Math.floor(ratio / 7); // round it down to get the status
 
   index = index <= 5 ? index : 5; // exceeds the array length
 
@@ -44,17 +44,17 @@ fs.readFile(process.argv[2], { encoding: 'utf-8' }, (err, data) => { // utf-8, t
   
   let numOfEquals = ''; // just so the output is pretty
 
-  for (let i = 0; i < fileName.length + 22; i++) { // there are 20 equals e 2 spaces in line 30
+  for (let i = 0; i < fileName.length + 22; i++) { // there are 20 equals e 2 spaces
     numOfEquals += '=';
   }
 
   console.log(`
     // ========== ${fileName} ========== //
 
-    - totalLines: ${totalLines}
-    - comments: ${comments}
-    - ratio: ${ratio}%
-    - status: ${status}
+    - Total lines (not blank): ${totalLines}
+    - Comments: ${comments}
+    - Ratio: ${ratio}%
+    - Status: ${status}
 
     // ${numOfEquals} //
   `);
