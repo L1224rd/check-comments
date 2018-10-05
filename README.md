@@ -1,4 +1,4 @@
-#How to Use
+# How to Use
 
 1. Install NodeJS
 2. Download `app.js
